@@ -1,8 +1,9 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { FormEventHandler, useState } from 'react';
 import { faker } from '@faker-js/faker';
+import { Link } from 'react-router-dom';
 
-interface Props {
+export interface Props {
     btnText?: string;
     isLoading?: boolean;
     onClose?: () => void;
@@ -32,6 +33,7 @@ const PostForm = ({ btnText, isLoading, onClose, onSubmit }: Props) => {
                         value={value}
                         onChange={(evt) => setValue(evt.target.value)}
                     />
+                    <Link to="/how-to-create-new-task">How to create a new task?</Link>
                     <Button data-testid="submit-btn" disabled={isLoading} variant="contained" type="submit">
                         {btnText ?? 'Submit'}
                     </Button>

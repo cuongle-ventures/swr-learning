@@ -1,12 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
 import { SnackbarProvider } from 'notistack';
+import { RouterProvider } from 'react-router-dom';
+import router from './routers.tsx';
+import ErrorBoundary from './components/ErrorBoundary.tsx';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <SnackbarProvider>
-            <App />
-        </SnackbarProvider>
+        <ErrorBoundary>
+            <SnackbarProvider>
+                <RouterProvider router={router} />
+            </SnackbarProvider>
+        </ErrorBoundary>
     </StrictMode>,
 );

@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import PostForm from '../PostForm';
+import { MemoryRouter } from 'react-router-dom';
+
+const renderWithProvider = (ui: React.ReactNode) => {
+    render(<MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>{ui}</MemoryRouter>);
+};
 
 it('should render post form in the document', () => {
-    render(<PostForm />);
+    renderWithProvider(<PostForm />);
     const frm = screen.queryByTestId('form');
     expect(frm).toBeInTheDocument();
     const frmTitle = screen.queryByTestId('form-title');
@@ -17,14 +22,14 @@ it('should render post form in the document', () => {
 
 it('should same text passed to button text', () => {
     const btnText = 'Hello world';
-    render(<PostForm btnText={btnText} />);
+    renderWithProvider(<PostForm btnText={btnText} />);
     const btnEl = screen.getByText(btnText);
     expect(btnEl).toBeInTheDocument();
     expect(screen.getByRole('button', { name: btnText })).toBeInTheDocument();
 });
 
 it('should contain text input', () => {
-    render(<PostForm />);
+    renderWithProvider(<PostForm />);
     const inputEl = screen.getByPlaceholderText('Title');
     expect(inputEl).toBeInTheDocument();
 });
