@@ -1,0 +1,115 @@
+{
+  "posts": [
+    {
+      "id": "e17d",
+      "title": "The Idiot",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "ce67",
+      "title": "Grimms' Fairy Tales",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "814a",
+      "title": "Dubliners",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "1c70",
+      "title": "Dao De Jing: A Minimalist Translation",
+      "status": true,
+      "views": 0
+    },
+    {
+      "id": "ad56",
+      "title": "Romeo and Juliet",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "4f40",
+      "title": "The Odyssey",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "7d2e",
+      "title": "Treasure Island",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "93a2",
+      "title": "The Moviegoer",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "f770",
+      "title": "To the Lighthouse",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "cbab",
+      "title": "I, Claudius",
+      "status": true,
+      "views": 0
+    },
+    {
+      "id": "32ce",
+      "title": "And Then There Were None",
+      "status": true,
+      "views": 0
+    },
+    {
+      "id": "883c",
+      "title": "Watchmen",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "85f9",
+      "title": "Brideshead Revisited",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "ecc9",
+      "title": "Dora",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "de70",
+      "title": "Bible",
+      "status": false,
+      "views": 0
+    },
+    {
+      "id": "e8b6",
+      "title": "A Confederacy of Dunces",
+      "status": false,
+      "views": 0
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
