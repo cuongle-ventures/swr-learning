@@ -7,5 +7,9 @@ export default defineConfig({
         environment: 'happy-dom',
         globals: true,
         setupFiles: ['./setup.ts'],
+        coverage: {
+            provider: 'istanbul',
+            reporter: ['text', 'json', 'html'],
+        },
     },
 });
