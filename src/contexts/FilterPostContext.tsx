@@ -11,7 +11,7 @@ interface FilterPostContextValue {
     setLimit: Dispatch<SetStateAction<number>>;
 }
 
-export const FilterPostContext = createContext<FilterPostContextValue>({
+export const defaultContextValues = {
     q: '',
     status: 'all',
     page: 0,
@@ -20,4 +20,6 @@ export const FilterPostContext = createContext<FilterPostContextValue>({
     setQ: () => {},
     setLimit: () => {},
     setPage: () => {},
-});
+};
+
+export const FilterPostContext = createContext<FilterPostContextValue>(defaultContextValues);
