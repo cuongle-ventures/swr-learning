@@ -16,6 +16,7 @@ const FilterTable = () => {
                     setStatus(evt.target.value);
                     setPage(0);
                 }}
+                data-testid="filter-table"
             >
                 <MenuItem value="all">All</MenuItem>
                 <MenuItem value="true">Completed</MenuItem>

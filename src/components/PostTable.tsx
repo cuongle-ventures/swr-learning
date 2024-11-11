@@ -31,8 +31,6 @@ const PostTable = () => {
     const { handleUpdateStatus } = useUpdateStatus({ mutate });
     const { handleDeletePost } = useDeletePost({ mutate });
 
-    console.log('data', data);
-
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
