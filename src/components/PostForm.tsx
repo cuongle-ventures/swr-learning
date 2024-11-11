@@ -7,7 +7,7 @@ export interface Props {
     btnText?: string;
     isLoading?: boolean;
     onClose?: () => void;
-    onSubmit?: (val: string) => void;
+    onSubmit?: (val: string) => void | Promise<void>;
 }
 
 const PostForm = ({ btnText, isLoading, onClose, onSubmit }: Props) => {
@@ -18,6 +18,7 @@ const PostForm = ({ btnText, isLoading, onClose, onSubmit }: Props) => {
         if (!value) return;
         onSubmit?.(value);
         onClose?.();
+        setValue('');
     };
 
     return (
