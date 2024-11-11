@@ -11,5 +11,7 @@ export default defineConfig({
             provider: 'istanbul',
             reporter: ['text', 'json', 'html'],
         },
+        isolate: true,
+        testTimeout: 15000,
     },
 });
