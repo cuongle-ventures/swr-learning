@@ -1,4 +1,4 @@
-import { fireEvent, getByPlaceholderText, render, screen, waitFor, within } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import App from './App';
 import MockAdapter from 'axios-mock-adapter';
 import instance from './api/axios';
