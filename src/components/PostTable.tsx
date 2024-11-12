@@ -76,6 +76,7 @@ const PostTable = () => {
                             <TableCell align="right">
                                 <Button onClick={() => handleDeletePost(row.id)} variant="text" color="error">
                                     <DeleteIcon />
+                                    Delete
                                 </Button>
                             </TableCell>
                         </TableRow>

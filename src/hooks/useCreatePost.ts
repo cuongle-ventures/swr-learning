@@ -1,6 +1,6 @@
 import useSWRMutation from 'swr/mutation';
 import instance from '../api/axios';
-import useRevalidatePostList from './useRevalidatePostList';
+import { useRevalidatePostList } from './useRevalidatePostList';
 import { useSnackbar } from 'notistack';
 import { CREATE_POST } from './keys';
 

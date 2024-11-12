@@ -1,6 +1,6 @@
 import { useSWRConfig } from 'swr';
 
-const useRevalidatePostList = () => {
+export const useRevalidatePostList = () => {
     const { mutate } = useSWRConfig();
 
     const revalidateAll = () => {
@@ -23,5 +23,3 @@ const useRevalidatePostList = () => {
 
     return { revalidateAll };
 };
-
-export default useRevalidatePostList;

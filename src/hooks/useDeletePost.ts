@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { KeyedMutator } from 'swr';
 import instance from '../api/axios';
-import useRevalidatePostList from './useRevalidatePostList';
+import { useRevalidatePostList } from './useRevalidatePostList';
 import { GetPostsResponse } from './useGetPosts';
 
 interface Props {
@@ -22,12 +22,12 @@ const useDeletePost = ({ mutate }: Props) => {
         };
         try {
             await mutate(
-                new Promise((resolve, reject) => {
+                new Promise((resolve) => {
                     setTimeout(() => {
-                        const randomErr = Math.floor(Math.random() * 2);
-                        if (randomErr === 1) {
-                            return reject(new Error('Something wrong'));
-                        }
+                        // const randomErr = Math.floor(Math.random() * 2);
+                        // if (randomErr === 1) {
+                        //     return reject(new Error('Something wrong'));
+                        // }
                         instance.delete('/posts/' + id).then((data) => {
                             enqueueSnackbar({
                                 variant: 'success',

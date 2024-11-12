@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { KeyedMutator } from 'swr';
 import instance from '../api/axios';
-import useRevalidatePostList from './useRevalidatePostList';
+import { useRevalidatePostList } from './useRevalidatePostList';
 import { GetPostsResponse } from './useGetPosts';
 import { cloneDeep } from 'lodash';
 

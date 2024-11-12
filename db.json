@@ -1,18 +1,6 @@
 {
   "posts": [
     {
-      "id": "e17d",
-      "title": "The Idiot",
-      "status": false,
-      "views": 0
-    },
-    {
-      "id": "ce67",
-      "title": "Grimms' Fairy Tales",
-      "status": false,
-      "views": 0
-    },
-    {
       "id": "814a",
       "title": "Dubliners",
       "status": false,
