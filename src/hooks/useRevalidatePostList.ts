@@ -14,9 +14,6 @@ export const useRevalidatePostList = () => {
             undefined,
             {
                 revalidate: true,
-                populateCache(_result, currentData) {
-                    return currentData;
-                },
             },
         );
     };
