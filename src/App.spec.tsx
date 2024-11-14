@@ -1,16 +1,16 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
-import App from './App';
 import MockAdapter from 'axios-mock-adapter';
-import instance from './api/axios';
-import { SWRConfig } from 'swr';
-import FilterPostProvider from './components/FilterPostProvider';
-import { MemoryRouter } from 'react-router-dom';
 import { act } from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { SWRConfig } from 'swr';
+import instance from './api/axios';
+import App from './App';
+import FilterPostProvider from './components/FilterPostProvider';
 
 let axiosMock: MockAdapter;
 
-const { revalidateAllFn } = vi.hoisted(() => {
-    return { revalidateAllFn: vi.fn() };
+const { revalidateAllFn, enqueueSnackbarFn } = vi.hoisted(() => {
+    return { revalidateAllFn: vi.fn(), enqueueSnackbarFn: vi.fn() };
 });
 
 describe('App', () => {
@@ -298,5 +298,69 @@ describe('App', () => {
                 views: 0,
             }),
         );
+    });
+
+    it('should update item status when users change status select', async () => {
+        axiosMock.onGet('/posts').reply(200, {
+            first: 1,
+            prev: null,
+            next: null,
+            last: 1,
+            pages: 1,
+            items: 2,
+            data: [
+                {
+                    id: '2',
+                    title: 'Title 2',
+                    status: false,
+                    views: 0,
+                },
+            ],
+        });
+        axiosMock.onPatch('/posts/2').replyOnce(200, {
+            data: {
+                title: 'Hello world',
+            },
+        });
+
+        vi.mock('notistack', () => ({
+            useSnackbar: () => ({
+                enqueueSnackbar: enqueueSnackbarFn,
+            }),
+        }));
+
+        vi.mock('./hooks/useRevalidatePostList', () => {
+            return {
+                useRevalidatePostList: () => ({ revalidateAll: revalidateAllFn }),
+            };
+        });
+
+        const { findByTestId, getByRole } = render(
+            <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                <App />
+            </MemoryRouter>,
+        );
+
+        const firstRow = await findByTestId('table-row-0');
+
+        const firstRowContainer = within(firstRow);
+
+        const selectEl = firstRowContainer.getByRole('combobox');
+
+        expect(selectEl).toBeInTheDocument();
+
+        fireEvent.mouseDown(selectEl);
+
+        const listbox = within(getByRole('listbox'));
+        const completeOption = listbox.getByRole('option', { name: /Completed/i });
+
+        await act(() => fireEvent.click(completeOption));
+
+        await waitFor(() => expect(revalidateAllFn).toHaveBeenCalledOnce());
+        expect(enqueueSnackbarFn).toHaveBeenCalledOnce();
+        expect(enqueueSnackbarFn).toHaveBeenCalledWith({
+            variant: 'success',
+            message: 'Update undefined successfully',
+        });
     });
 });

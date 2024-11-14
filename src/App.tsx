@@ -1,8 +1,8 @@
+import { Button, Card, Container, Drawer, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import FilterTable from './components/FilterTable';
-import PostTable from './components/PostTable';
-import { Container, Card, Stack, Button, Drawer, Typography } from '@mui/material';
 import PostForm from './components/PostForm';
+import PostTable from './components/PostTable';
 import useCreatePost from './hooks/useCreatePost';
 
 const App = () => {

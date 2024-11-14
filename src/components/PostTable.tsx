@@ -85,7 +85,7 @@ const PostTable = () => {
                 <TableFooter>
                     <TableRow>
                         <TablePagination
-                            rowsPerPageOptions={[2, 5, 10, 25, { label: 'All', value: -1 }]}
+                            rowsPerPageOptions={[1, 2, 5, 10, 25, { label: 'All', value: -1 }]}
                             count={data?.items ?? 0}
                             rowsPerPage={limit}
                             page={page}
@@ -94,7 +94,7 @@ const PostTable = () => {
                                     inputProps: {
                                         'aria-label': 'rows per page',
                                     },
-                                    native: true,
+                                    native: false,
                                 },
                             }}
                             onPageChange={(_e, page) => {
