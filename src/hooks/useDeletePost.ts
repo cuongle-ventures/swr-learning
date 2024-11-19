@@ -6,10 +6,9 @@ import { GetPostsResponse } from './useGetPosts';
 
 interface Props {
     mutate: KeyedMutator<GetPostsResponse | undefined>;
-    currentData: GetPostsResponse | undefined;
 }
 
-const useDeletePost = ({ mutate, currentData }: Props) => {
+const useDeletePost = ({ mutate }: Props) => {
     const { revalidateAll } = useRevalidatePostList();
     const { enqueueSnackbar } = useSnackbar();
 
@@ -40,8 +39,8 @@ const useDeletePost = ({ mutate, currentData }: Props) => {
                 }),
                 {
                     // During calling API
-                    optimisticData() {
-                        return optimisticData(currentData);
+                    optimisticData(_currentData, displayData) {
+                        return optimisticData(displayData);
                     },
                     populateCache: false,
                     throwOnError: true,

@@ -29,7 +29,7 @@ const PostTable = () => {
         per_page: limit,
     });
     const { handleUpdateStatus } = useUpdateStatus({ mutate });
-    const { handleDeletePost } = useDeletePost({ mutate, currentData: data });
+    const { handleDeletePost } = useDeletePost({ mutate });
 
     return (
         <TableContainer component={Paper}>
