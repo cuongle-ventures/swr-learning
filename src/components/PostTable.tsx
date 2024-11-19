@@ -29,15 +29,16 @@ const PostTable = () => {
         per_page: limit,
     });
     const { handleUpdateStatus } = useUpdateStatus({ mutate });
-    const { handleDeletePost } = useDeletePost({ mutate });
+    const { handleDeletePost } = useDeletePost({ mutate, currentData: data });
 
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
+                        <TableCell sx={{ flex: '20%' }}>ID</TableCell>
                         <TableCell sx={{ flex: '25%' }}>Title</TableCell>
-                        <TableCell align="left" sx={{ flex: '25%' }}>
+                        <TableCell align="left" sx={{ flex: '5%' }}>
                             Views
                         </TableCell>
                         <TableCell align="left" sx={{ flex: '25%' }}>
@@ -54,8 +55,12 @@ const PostTable = () => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
+                                {row.id}
+                            </TableCell>
+                            <TableCell component="th" scope="row">
                                 {row.title}
                             </TableCell>
+
                             <TableCell align="left">{row.views}</TableCell>
                             <TableCell align="left">
                                 <Select
