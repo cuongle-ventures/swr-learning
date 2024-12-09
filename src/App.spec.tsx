@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
@@ -21,6 +21,7 @@ describe('App', () => {
     afterEach(() => {
         axiosMock.restore();
         vi.resetAllMocks();
+        cleanup();
     });
 
     it('should render in the document', () => {

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for swr-testing/src/contexts/FilterPostContext.tsx</title>
+    <title>Code coverage report for swr-testing/src/components/ErrorBoundary.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">swr-testing/src/contexts</a> FilterPostContext.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">swr-testing/src/components</a> ErrorBoundary.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,7 +88,17 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -99,45 +109,65 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createContext, Dispatch, SetStateAction } from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
 &nbsp;
-interface FilterPostContextValue {
-    q: string;
-    status: string;
-    page: number;
-    limit: number;
-    setStatus: Dispatch&lt;SetStateAction&lt;string&gt;&gt;;
-    setQ: Dispatch&lt;SetStateAction&lt;string&gt;&gt;;
-    setPage: Dispatch&lt;SetStateAction&lt;number&gt;&gt;;
-    setLimit: Dispatch&lt;SetStateAction&lt;number&gt;&gt;;
+interface Props extends PropsWithChildren {}
+&nbsp;
+interface State {
+    error: null | Error;
+    errorInfo: ErrorInfo | null;
 }
 &nbsp;
-export const defaultContextValues = {
-    q: '',
-    status: 'all',
-    page: 0,
-    limit: 2,
-    setStatus: () =&gt; {},
-    setQ: <span class="fstat-no" title="function not covered" >() =&gt; {</span>},
-    setLimit: <span class="fstat-no" title="function not covered" >() =&gt; {</span>},
-    setPage: () =&gt; {},
-};
+class ErrorBoundary extends Component&lt;Props, State&gt; {
+<span class="fstat-no" title="function not covered" >    constructor(p</span>rops: Props) {
+<span class="cstat-no" title="statement not covered" >        super(props);</span>
+<span class="cstat-no" title="statement not covered" >        this.state = {</span>
+            error: null,
+            errorInfo: null,
+        };
+    }
 &nbsp;
-export const FilterPostContext = createContext&lt;FilterPostContextValue&gt;(defaultContextValues);
+<span class="fstat-no" title="function not covered" >    componentDidCatch(e</span>rror: Error, errorInfo: ErrorInfo): void {
+<span class="cstat-no" title="statement not covered" >        this.setState({</span>
+            error,
+            errorInfo,
+        });
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    render(): ReactNode {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.state.error) {</span>
+<span class="cstat-no" title="statement not covered" >            return &lt;p style={{ color: 'red' }}&gt;Something error {this.state.errorInfo?.componentStack}&lt;/p&gt;;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return this.props.children;</span>
+    }
+}
+&nbsp;
+export default ErrorBoundary;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
