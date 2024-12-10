@@ -31,9 +31,6 @@ const PostTable = () => {
     const { handleUpdateStatus } = useUpdateStatus({ mutate });
     const { handleDeletePost } = useDeletePost({ mutate });
 
-    console.log('data', data);
-    console.log('error', error);
-
     if (error) {
         return <p>There may be an error when loading the data</p>;
     }

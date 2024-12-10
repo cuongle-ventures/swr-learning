@@ -7,6 +7,7 @@ export default defineConfig({
         environment: 'happy-dom',
         globals: true,
         setupFiles: ['./setup.ts'],
+        reporters: 'verbose',
         coverage: {
             provider: 'istanbul',
             reporter: ['text', 'json', 'html'],
