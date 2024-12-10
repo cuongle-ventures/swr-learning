@@ -38,6 +38,29 @@ describe('PostTable', () => {
         expect(screen.getByRole('table')).toBeInTheDocument();
     });
 
+    it('should render page successfully', async () => {
+        axiosMock.onGet('/posts').reply(200, {
+            first: 1,
+            prev: null,
+            next: null,
+            last: 2,
+            pages: 2,
+            items: 10,
+            data: [
+                {
+                    id: '1',
+                    title: 'Title 1',
+                    status: false,
+                    views: 0,
+                },
+            ],
+        });
+
+        renderWithProvider();
+
+        await screen.findByTestId('table-row-0');
+    });
+
     it('should handle error when fetching data failed', async () => {
         axiosMock.onGet('/posts').reply(500);
         render(<PostTable />);
