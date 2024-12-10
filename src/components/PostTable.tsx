@@ -22,7 +22,7 @@ import useDeletePost from '../hooks/useDeletePost';
 
 const PostTable = () => {
     const { q, status, page, limit, setPage, setLimit } = useContext(FilterPostContext);
-    const { data, mutate } = useGetPosts({
+    const { data, error, mutate } = useGetPosts({
         q,
         status,
         page: page,
@@ -30,6 +30,13 @@ const PostTable = () => {
     });
     const { handleUpdateStatus } = useUpdateStatus({ mutate });
     const { handleDeletePost } = useDeletePost({ mutate });
+
+    console.log('data', data);
+    console.log('error', error);
+
+    if (error) {
+        return <p>There may be an error when loading the data</p>;
+    }
 
     return (
         <TableContainer component={Paper}>

@@ -1,9 +1,24 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import PostTable from '../PostTable';
 import { defaultContextValues, FilterPostContext } from '../../contexts/FilterPostContext';
 import { act } from 'react';
 import MockAdapter from 'axios-mock-adapter';
 import instance from '../../api/axios';
+import { SWRConfig } from 'swr';
+
+const { setPageFn } = vi.hoisted(() => ({
+    setPageFn: vi.fn(),
+}));
+
+const renderWithProvider = () => {
+    return render(
+        <FilterPostContext.Provider value={{ ...defaultContextValues, setPage: setPageFn, limit: 1 }}>
+            <SWRConfig value={{ provider: () => new Map() }}>
+                <PostTable />
+            </SWRConfig>
+        </FilterPostContext.Provider>,
+    );
+};
 
 let axiosMock: MockAdapter;
 
@@ -18,8 +33,17 @@ describe('PostTable', () => {
     });
 
     it('should render PostTable in the document', () => {
-        render(<PostTable />);
+        axiosMock.onGet('/posts').reply(200);
+        renderWithProvider();
         expect(screen.getByRole('table')).toBeInTheDocument();
+    });
+
+    it('should handle error when fetching data failed', async () => {
+        axiosMock.onGet('/posts').reply(500);
+        render(<PostTable />);
+        await waitFor(() =>
+            expect(screen.getByText('There may be an error when loading the data')).toBeInTheDocument(),
+        );
     });
 
     it('should change page when click on pagintion', async () => {
@@ -40,12 +64,7 @@ describe('PostTable', () => {
             ],
         });
 
-        const setPageFn = vi.fn();
-        render(
-            <FilterPostContext.Provider value={{ ...defaultContextValues, setPage: setPageFn, limit: 1 }}>
-                <PostTable />
-            </FilterPostContext.Provider>,
-        );
+        renderWithProvider();
 
         await screen.findByTestId('table-row-0');
 
