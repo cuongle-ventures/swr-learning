@@ -1,61 +1,65 @@
+import { cloneDeep } from 'lodash';
 import { useSnackbar } from 'notistack';
 import { KeyedMutator } from 'swr';
+import useSWRMutation from 'swr/mutation';
 import instance from '../api/axios';
-import { useRevalidatePostList } from './useRevalidatePostList';
 import { GetPostsResponse } from './useGetPosts';
-import { cloneDeep } from 'lodash';
+import { useRevalidatePostList } from './useRevalidatePostList';
 
 interface Props {
-    mutate: KeyedMutator<GetPostsResponse | undefined>;
+    mutate?: KeyedMutator<GetPostsResponse | undefined>;
 }
 
 const useUpdateStatus = ({ mutate }: Props) => {
     const { revalidateAll } = useRevalidatePostList();
     const { enqueueSnackbar } = useSnackbar();
 
-    const handleUpdateStatus = async ({ id, status }: { status: boolean; id: string }) => {
-        const optimisticData = (currentData: GetPostsResponse | undefined) => {
-            if (!currentData) return undefined;
-            const cloneCurrentData = cloneDeep(currentData);
-            const index = cloneCurrentData.data.findIndex((it) => it.id === id);
-            cloneCurrentData.data[index].status = status;
-            return cloneCurrentData;
-        };
-
-        await mutate(
-            instance
-                .patch('/posts/' + id, {
-                    status,
+    const { trigger, ...rest } = useSWRMutation(
+        'update-user',
+        (_key, { arg }: { arg: { id: string; status: boolean } }) => {
+            return instance
+                .patch('/posts/' + arg.id, {
+                    status: arg.status,
                 })
-                .then(
-                    (data) =>
-                        new Promise<any>((resolve) => {
-                            setTimeout(() => {
-                                enqueueSnackbar({
-                                    variant: 'success',
-                                    message: 'Update ' + data.data.title + ' successfully',
-                                });
-                                resolve(data);
-                            }, 500);
-                        }),
-                ),
-            {
-                // During calling API
+                .then((data) => {
+                    enqueueSnackbar({
+                        variant: 'success',
+                        message: 'Update ' + data.data.title + ' successfully',
+                    });
+                    return data;
+                });
+        },
+        {
+            throwOnError: true,
+        },
+    );
+
+    const handleUpdateStatus = async ({ id, status }: { status: boolean; id: string }) => {
+        try {
+            mutate?.(undefined, {
                 optimisticData(currentData) {
-                    return optimisticData(currentData);
+                    if (!currentData) return undefined;
+                    const cloneCurrentData = cloneDeep(currentData);
+                    const index = cloneCurrentData.data.findIndex((it) => it.id === id);
+                    cloneCurrentData.data[index].status = status;
+                    return cloneCurrentData;
                 },
-                // After API is done
-                populateCache(_result, currentData) {
-                    return optimisticData(currentData);
-                },
-                rollbackOnError: true,
+                populateCache: false,
                 revalidate: false,
-            },
-        );
-        revalidateAll();
+            });
+
+            await trigger({ id, status });
+        } catch (error) {
+            enqueueSnackbar({
+                variant: 'error',
+                message: 'Update ' + id + ' failed',
+            });
+        } finally {
+            revalidateAll();
+        }
     };
 
-    return { handleUpdateStatus };
+    return { trigger, handleUpdateStatus, ...rest };
 };
 
 export default useUpdateStatus;
