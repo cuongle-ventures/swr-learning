@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
+import ReactHookForm from './components/ReactHookForm';
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
                 element: <p>how-to-create-new-task</p>,
             },
         ],
+    },
+    {
+        path: '/form',
+        element: <ReactHookForm />,
     },
 ]);
 
